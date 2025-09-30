@@ -1,0 +1,3682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TURBO GT 17 - Premium protein supplement with 17.5g protein and under 150 calories. Maximize muscle growth and accelerate recovery with our scientifically formulated supplement.">
+    <meta name="keywords" content="protein supplement, muscle growth, recovery, fitness, nutrition, TURBO GT 17, premium protein">
+    <meta name="author" content="TURBO GT 17">
+    <meta property="og:title" content="TURBO GT 17 - Premium Protein Supplement">
+    <meta property="og:description" content="17.5g Protein • <150 Kcal • Premium Taste • Scientifically Formulated">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./hero.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TURBO GT 17 - Premium Protein Supplement">
+    <meta name="twitter:description" content="Transform your fitness with our premium protein supplement">
+    <title>TURBO GT 17 - Premium Protein Supplement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #0d0d0d;
+            --tertiary-black: #1a1a1a;
+            --quaternary-black: #262626;
+            --white: #ffffff;
+            --gray: #888888;
+            --light-gray: #f0f0f0;
+            --neon-blue: #00D4FF;
+            --neon-purple: #8B5CF6;
+            --neon-pink: #FF006E;
+            --neon-green: #00FF88;
+            --neon-yellow: #FFD700;
+            --neon-blue-glow: rgba(0, 212, 255, 0.4);
+            --neon-purple-glow: rgba(139, 92, 246, 0.4);
+            --neon-pink-glow: rgba(255, 0, 110, 0.4);
+            --neon-green-glow: rgba(0, 255, 136, 0.4);
+            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            --gradient-secondary: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            --gradient-tertiary: linear-gradient(135deg, var(--neon-pink), var(--neon-green));
+        }
+
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --primary-black: #ffffff;
+            --secondary-black: #f8f9fa;
+            --tertiary-black: #e9ecef;
+            --quaternary-black: #dee2e6;
+            --white: #000000;
+            --gray: #495057;
+            --light-gray: #f8f9fa;
+            --neon-blue: #0066cc;
+            --neon-purple: #6b46c1;
+            --neon-pink: #e91e63;
+            --neon-green: #00c853;
+            --neon-yellow: #ff9800;
+            --neon-blue-glow: rgba(0, 102, 204, 0.2);
+            --neon-purple-glow: rgba(107, 70, 193, 0.2);
+            --neon-pink-glow: rgba(233, 30, 99, 0.2);
+            --neon-green-glow: rgba(0, 200, 83, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            --gradient-secondary: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            --gradient-tertiary: linear-gradient(135deg, var(--neon-pink), var(--neon-green));
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Enhanced Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--secondary-black), var(--primary-black));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .loading-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+            letter-spacing: -1px;
+        }
+
+        .loading-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.3s forwards;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            opacity: 0;
+            animation: spin 1s linear infinite, fadeIn 1s ease-out 0.6s forwards;
+        }
+
+        .loading-progress {
+            margin: 2rem auto 0;
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.9s forwards;
+            text-align: center;
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            animation: progressLoad 2s ease-out forwards;
+        }
+
+        @keyframes progressLoad {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Theme Toggle */
+        .theme-controls {
+            position: fixed;
+            top: 5rem;
+            right: 2rem;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.2s forwards;
+        }
+
+        .theme-toggle,
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle:hover,
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle span,
+        .language-toggle span {
+            font-size: 1.3rem;
+        }
+
+        [data-theme="light"] .theme-toggle,
+        [data-theme="light"] .language-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .theme-toggle:hover,
+        [data-theme="light"] .language-toggle:hover {
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.8rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideDown 0.8s ease-out 2.2s forwards;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, var(--secondary-black), var(--primary-black));
+            overflow: hidden;
+            z-index: 2;
+            padding-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 0, 110, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 10s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2.5s forwards;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.3s forwards;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-product {
+            width: 520px;
+            height: 650px;
+            margin: 0 auto 3rem;
+            position: relative;
+            opacity: 0;
+            animation: scaleIn 1s ease-out 2.8s forwards;
+            background: transparent;
+        }
+
+        .hero-product::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 70%;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(25px);
+            z-index: -1;
+            transition: all 0.4s ease;
+            will-change: opacity, filter;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { 
+                opacity: 0.6; 
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero-product img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            filter: 
+                drop-shadow(0 0 20px rgba(0, 212, 255, 0.4))
+                drop-shadow(0 0 40px rgba(139, 92, 246, 0.3))
+                drop-shadow(0 0 60px rgba(255, 0, 110, 0.2));
+            transition: all 0.4s ease;
+            mix-blend-mode: normal;
+            opacity: 1;
+            animation: floatImage 8s ease-in-out infinite;
+            border-radius: 0;
+            background: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-product:hover img {
+            transform: scale(1.08) rotateY(5deg);
+            filter: 
+                drop-shadow(0 0 30px rgba(0, 212, 255, 0.6))
+                drop-shadow(0 0 50px rgba(139, 92, 246, 0.4))
+                drop-shadow(0 0 70px rgba(255, 0, 110, 0.3))
+                brightness(1.1);
+        }
+
+        .hero-product:hover::before {
+            opacity: 0.9;
+            filter: blur(30px);
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0px) rotateX(0deg);
+            }
+            25% {
+                transform: translateY(-15px) rotateX(3deg);
+            }
+            50% {
+                transform: translateY(-10px) rotateX(-2deg);
+            }
+            75% {
+                transform: translateY(-20px) rotateX(1deg);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeIn 1s ease-out forwards;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.1s forwards;
+            font-weight: 500;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.3s forwards;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 3.4s forwards;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Enhanced Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--secondary-black), var(--tertiary-black));
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-secondary);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-metric {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .feature-metric-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced Nutrition Section */
+        .nutrition {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--tertiary-black), var(--secondary-black));
+            position: relative;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nutrition-item {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nutrition-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nutrition-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nutrition-item:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .nutrition-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .nutrition-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .nutrition-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--secondary-black), var(--tertiary-black));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            color: var(--neon-yellow);
+            font-size: 1.2rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--tertiary-black), var(--secondary-black));
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--neon-blue);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 300px;
+        }
+
+        /* Enhanced Visual Elements Section */
+        .visual-elements {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--secondary-black), var(--tertiary-black));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geometric-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 60px;
+            height: 60px;
+            background: var(--neon-purple);
+            top: 60%;
+            right: 15%;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 50px;
+            height: 50px;
+            background: var(--neon-pink);
+            bottom: 20%;
+            left: 20%;
+            border-radius: 50%;
+            animation-delay: 4s;
+        }
+
+        .benefits-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .benefit-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benefit-item:hover {
+            border-color: var(--neon-blue);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .benefit-item:hover .benefit-icon {
+            background: var(--gradient-secondary);
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .benefit-description {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-stat {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .benefit-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .benefit-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Enhanced CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: radial-gradient(circle at center, var(--secondary-black), var(--primary-black));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 8s ease-in-out infinite;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .cta-price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-price-original {
+            font-size: 1.5rem;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-right: 1rem;
+        }
+
+        .cta-savings {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--gradient-tertiary);
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button-large {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button-large:hover::before {
+            left: 100%;
+        }
+
+        .cta-button-large:hover {
+            background: var(--gradient-secondary);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .cta-feature-icon {
+            color: var(--neon-green);
+        }
+
+        /* Enhanced Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--primary-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--neon-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Enhanced Particle System */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+            border-radius: 50%;
+        }
+
+        @keyframes particleFloat1 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particleFloat2 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(-150px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particleFloat3 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(75px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particleFloat4 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particleFloat5 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Micro-bubble floating animations */
+        @keyframes bubbleFloat1 {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            25% {
+                transform: translateY(75vh) translateX(20px) scale(1) rotate(90deg);
+            }
+            50% {
+                transform: translateY(50vh) translateX(-10px) scale(0.9) rotate(180deg);
+            }
+            75% {
+                transform: translateY(25vh) translateX(15px) scale(1.1) rotate(270deg);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(5px) scale(0.7) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat2 {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.9) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(70vh) translateX(-25px) scale(1.1) rotate(120deg);
+            }
+            45% {
+                transform: translateY(55vh) translateX(10px) scale(0.8) rotate(180deg);
+            }
+            60% {
+                transform: translateY(40vh) translateX(-15px) scale(1.2) rotate(240deg);
+            }
+            80% {
+                transform: translateY(20vh) translateX(20px) scale(0.9) rotate(300deg);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-5px) scale(0.6) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat3 {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.7) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            20% {
+                transform: translateY(80vh) translateX(30px) scale(1.3) rotate(60deg);
+            }
+            35% {
+                transform: translateY(65vh) translateX(-20px) scale(0.6) rotate(120deg);
+            }
+            50% {
+                transform: translateY(50vh) translateX(25px) scale(1.4) rotate(180deg);
+            }
+            65% {
+                transform: translateY(35vh) translateX(-30px) scale(0.8) rotate(240deg);
+            }
+            80% {
+                transform: translateY(20vh) translateX(15px) scale(1.1) rotate(300deg);
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(10px) scale(0.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat4 {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            15% {
+                transform: translateY(85vh) translateX(-15px) scale(0.8) rotate(45deg);
+            }
+            30% {
+                transform: translateY(70vh) translateX(25px) scale(1.2) rotate(90deg);
+            }
+            40% {
+                transform: translateY(60vh) translateX(-10px) scale(0.7) rotate(135deg);
+            }
+            55% {
+                transform: translateY(45vh) translateX(20px) scale(1.3) rotate(180deg);
+            }
+            70% {
+                transform: translateY(30vh) translateX(-25px) scale(0.9) rotate(225deg);
+            }
+            85% {
+                transform: translateY(15vh) translateX(10px) scale(1.1) rotate(270deg);
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-15px) scale(0.8) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat5 {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            25% {
+                transform: translateY(75vh) translateX(18px) scale(1.1) rotate(72deg);
+            }
+            35% {
+                transform: translateY(65vh) translateX(-22px) scale(0.7) rotate(144deg);
+            }
+            45% {
+                transform: translateY(55vh) translateX(28px) scale(1.4) rotate(216deg);
+            }
+            55% {
+                transform: translateY(45vh) translateX(-18px) scale(0.6) rotate(288deg);
+            }
+            65% {
+                transform: translateY(35vh) translateX(12px) scale(1.2) rotate(324deg);
+            }
+            75% {
+                transform: translateY(25vh) translateX(-8px) scale(0.9) rotate(360deg);
+            }
+            85% {
+                transform: translateY(15vh) translateX(22px) scale(1.1) rotate(396deg);
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-12px) scale(0.7) rotate(432deg);
+                opacity: 0;
+            }
+        }
+
+        /* Pulse animation for random bubble pulsing */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile-First Optimized Layout */
+        @media (max-width: 768px) {
+            /* Compact Navigation */
+            nav {
+                padding: 0.5rem 1rem;
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                width: 30px;
+                height: 25px;
+            }
+
+            .mobile-menu-toggle span {
+                width: 20px;
+                height: 2px;
+            }
+
+            .theme-controls {
+                top: 3.5rem;
+                right: 0.8rem;
+                gap: 0.3rem;
+            }
+
+            .theme-toggle,
+            .language-toggle {
+                width: 35px;
+                height: 35px;
+                padding: 0.5rem;
+            }
+
+            .theme-toggle span,
+            .language-toggle span {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.8rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Simplified Hero Layout */
+            .hero {
+                padding: 1rem 0.8rem;
+                min-height: 60vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-top: 70px;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.8rem;
+                margin-bottom: 0.5rem;
+                align-self: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: -0.5px;
+                margin-bottom: 0.5rem;
+                line-height: 1.1;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            /* Show hero product and stats on mobile */
+            .hero-product {
+                display: block;
+                width: 200px;
+                height: 280px;
+                margin: 0 auto 1.5rem;
+            }
+
+            .hero-stats {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-stat-value {
+                font-size: 1.2rem;
+            }
+
+            .hero-stat-label {
+                font-size: 0.6rem;
+            }
+
+            /* Move sections to bottom - reorder content */
+            .features {
+                order: 10;
+            }
+
+            .nutrition {
+                order: 11;
+            }
+
+            .testimonials {
+                order: 12;
+            }
+
+            .visual-elements {
+                order: 13;
+            }
+
+            .faq {
+                order: 14;
+            }
+
+            .cta-section {
+                order: 15;
+            }
+
+            footer {
+                order: 16;
+            }
+
+            /* Compact Section Layouts */
+            .section {
+                padding: 2rem 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+
+            .section-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 1.2rem;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            /* Single Column Grids */
+            .features-grid,
+            .benefits-list,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-card,
+            .benefit-item,
+            .testimonial-card {
+                padding: 1.2rem;
+                text-align: center;
+            }
+
+            .feature-icon,
+            .benefit-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                margin: 0 auto 0.8rem;
+            }
+
+            .feature-title,
+            .benefit-title {
+                font-size: 0.95rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .feature-description,
+            .benefit-description {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+
+            /* Nutrition Grid - 2x2 */
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .nutrition-item {
+                padding: 0.8rem;
+                text-align: center;
+            }
+
+            .nutrition-value {
+                font-size: 1.3rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .nutrition-label {
+                font-size: 0.65rem;
+                line-height: 1.2;
+            }
+
+            /* FAQ Compact */
+            .faq-container {
+                max-width: 100%;
+            }
+
+            .faq-item {
+                margin-bottom: 0.4rem;
+            }
+
+            .faq-question {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+
+            .faq-answer {
+                font-size: 0.75rem;
+                line-height: 1.4;
+                padding: 0 0.8rem 0.8rem;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                padding: 2rem 0.8rem;
+            }
+
+            .cta-content {
+                text-align: center;
+            }
+
+            .cta-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.4rem;
+                line-height: 1.2;
+            }
+
+            .cta-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 1.2rem;
+                line-height: 1.4;
+            }
+
+            .cta-button-large {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            /* Footer Stacked */
+            footer {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                font-size: 0.85rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.75rem;
+                line-height: 1.5;
+            }
+
+            .social-links {
+                justify-content: center;
+                gap: 0.4rem;
+            }
+
+            .social-link {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.65rem;
+                margin-top: 1rem;
+            }
+
+            /* Testimonial Cards Mobile */
+            .testimonial-content {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+
+            .testimonial-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+
+            .testimonial-name {
+                font-size: 0.8rem;
+            }
+
+            .testimonial-role {
+                font-size: 0.7rem;
+            }
+
+            /* Hide metrics on mobile for cleaner layout */
+            .feature-metric,
+            .benefit-stat {
+                display: none;
+            }
+
+            /* Mobile Optimized Interactions */
+            .feature-card:hover,
+            .benefit-item:hover,
+            .testimonial-card:hover {
+                transform: translateY(-2px);
+            }
+
+            /* Touch Targets */
+            .cta-button,
+            .cta-button-large,
+            .theme-toggle,
+            .language-toggle,
+            .mobile-menu-toggle {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Reduce Motion on Mobile */
+            .hero-product img {
+                animation: none;
+            }
+
+            /* Hide particles on mobile for performance */
+            .hero-particles {
+                display: none;
+            }
+
+            /* Main content container for mobile ordering */
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            main {
+                order: 1;
+            }
+
+            /* Ensure proper stacking */
+            .features,
+            .nutrition,
+            .testimonials,
+            .visual-elements,
+            .faq,
+            .cta-section,
+            footer {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1.5rem 0.8rem;
+                min-height: 85vh;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: -0.5px;
+                margin-bottom: 0.6rem;
+            }
+
+            .hero-product {
+                width: 240px;
+                height: 350px;
+                margin: 0 auto 1.5rem;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+                line-height: 1.4;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 0.8rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .hero-stat-value {
+                font-size: 1.3rem;
+            }
+
+            .hero-stat-label {
+                font-size: 0.65rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.4;
+            }
+
+            .features,
+            .nutrition,
+            .testimonials,
+            .faq,
+            .visual-elements {
+                padding: 3rem 0.8rem;
+            }
+
+            .cta-section {
+                padding: 3rem 0.8rem;
+            }
+
+            .footer {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .nutrition-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .nutrition-item {
+                padding: 1.2rem;
+            }
+
+            .nutrition-value {
+                font-size: 1.8rem;
+            }
+
+            .nutrition-label {
+                font-size: 0.75rem;
+            }
+
+            .feature-card,
+            .benefit-item {
+                padding: 1.5rem;
+            }
+
+            .feature-icon,
+            .benefit-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+
+            .feature-title,
+            .benefit-title {
+                font-size: 1rem;
+            }
+
+            .feature-description,
+            .benefit-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .testimonial-card {
+                padding: 1.2rem;
+            }
+
+            .testimonial-content {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .testimonial-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .testimonial-name {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-role {
+                font-size: 0.8rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .faq-answer {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .cta-title {
+                font-size: 1.6rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .cta-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .cta-button-large {
+                padding: 1rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-section h3 {
+                font-size: 0.9rem;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.8rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.7rem;
+            }
+
+            .social-link {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .theme-controls {
+                top: 3.5rem;
+                right: 0.5rem;
+                gap: 0.3rem;
+            }
+
+            .theme-toggle,
+            .language-toggle {
+                width: 32px;
+                height: 32px;
+                padding: 0.4rem;
+            }
+
+            .theme-toggle span,
+            .language-toggle span {
+                font-size: 0.9rem;
+            }
+
+            nav {
+                padding: 0.6rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                padding: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.8rem 0;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-product {
+                width: 200px;
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .feature-icon,
+            .benefit-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .cta-button-large {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .theme-toggle,
+            .language-toggle {
+                width: 28px;
+                height: 28px;
+                padding: 0.3rem;
+            }
+
+            .theme-toggle span,
+            .language-toggle span {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .feature-card:hover,
+            .benefit-item:hover,
+            .testimonial-card:hover {
+                transform: none;
+            }
+
+            .feature-card:hover .feature-icon,
+            .benefit-item:hover .benefit-icon {
+                transform: none;
+            }
+
+            .cta-button:hover,
+            .cta-button-large:hover {
+                transform: none;
+            }
+
+            .hero-product:hover img {
+                transform: none;
+            }
+
+            /* Enhanced mobile tap effects */
+            .feature-card:active,
+            .benefit-item:active,
+            .testimonial-card:active {
+                transform: scale(0.98);
+                background: rgba(0, 212, 255, 0.1);
+            }
+
+            .cta-button:active,
+            .cta-button-large:active {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                will-change: auto !important;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--neon-blue);
+            outline-offset: 2px;
+        }
+
+        button:focus,
+        a:focus {
+            outline: 2px solid var(--neon-blue);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+            <div class="loading-content">
+                <div class="loading-logo">TURBO GT 17</div>
+                <div class="loading-subtitle" data-lang="en">Premium Protein Supplement</div>
+                <div class="loading-spinner"></div>
+                <div class="loading-progress">
+                    <div class="loading-progress-bar"></div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Theme and Language Controls -->
+    <div class="theme-controls">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span id="themeIcon">🌙</span>
+        </button>
+        <button class="language-toggle" id="languageToggle" aria-label="Toggle language">
+            <span id="languageIcon">🇬🇧</span>
+        </button>
+    </div>
+
+    <!-- Enhanced Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">TURBO GT 17</div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-lang="en">Home</a></li>
+                <li><a href="#features" data-lang="en">Features</a></li>
+                <li><a href="#nutrition" data-lang="en">Nutrition</a></li>
+                <li><a href="#testimonials" data-lang="en">Reviews</a></li>
+                <li><a href="#benefits" data-lang="en">Benefits</a></li>
+                <li><a href="#faq" data-lang="en">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-content">
+                <div class="hero-badge" data-lang="en">🔥 BEST SELLER</div>
+                <div class="hero-product">
+                    <img src="hero.png" alt="TURBO GT 17 Protein Supplement" loading="eager">
+                </div>
+                <h1 class="hero-title">TURBO GT 17</h1>
+                <p class="hero-subtitle" data-lang="en">Premium Protein Supplement for Maximum Performance</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">17.5g</span>
+                        <span class="hero-stat-label" data-lang="en">Protein</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value"><150</span>
+                        <span class="hero-stat-label" data-lang="en">Calories</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">5★</span>
+                        <span class="hero-stat-label" data-lang="en">Taste</span>
+                    </div>
+                </div>
+                <a href="#cta" class="cta-button" data-lang="en">Order Now</a>
+            </div>
+    </section>
+
+    <!-- Enhanced Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Why Choose TURBO GT 17</h2>
+            <p class="section-subtitle" data-lang="en">Scientifically formulated to deliver maximum results with premium ingredients</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title" data-lang="en">High Protein</h3>
+                    <p class="feature-description" data-lang="en">Premium quality whey protein isolate to maximize muscle growth and accelerate recovery time.</p>
+                    <div class="feature-metric">
+                        <span class="feature-metric-value">17.5g</span>
+                        <span class="feature-metric-label" data-lang="en">Per Serving</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3 class="feature-title" data-lang="en">Low Calorie</h3>
+                    <p class="feature-description" data-lang="en">Smart nutrition that fuels your body without compromising your calorie goals.</p>
+                    <div class="feature-metric">
+                        <span class="feature-metric-value"><150</span>
+                        <span class="feature-metric-label" data-lang="en">Calories</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👅</div>
+                    <h3 class="feature-title" data-lang="en">Premium Taste</h3>
+                    <p class="feature-description" data-lang="en">Indulgent milkshake flavor that makes healthy nutrition taste amazing.</p>
+                    <div class="feature-metric">
+                        <span class="feature-metric-value">5★</span>
+                        <span class="feature-metric-label" data-lang="en">Taste Rating</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3 class="feature-title" data-lang="en">Clean Nutrition</h3>
+                    <p class="feature-description" data-lang="en">Pure ingredients with no artificial additives or unnecessary fillers.</p>
+                    <div class="feature-metric">
+                        <span class="feature-metric-value">100%</span>
+                        <span class="feature-metric-label" data-lang="en">Natural</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Nutrition Section -->
+    <section class="nutrition" id="nutrition">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Nutrition Facts</h2>
+            <p class="section-subtitle" data-lang="en">Every serving delivers exactly what your body needs</p>
+            <div class="nutrition-grid">
+                <div class="nutrition-item">
+                    <div class="nutrition-value" data-target="17.5">0</div>
+                    <div class="nutrition-label" data-lang="en">Protein (g)</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value" data-target="150">0</div>
+                    <div class="nutrition-label" data-lang="en">Calories</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value" data-target="25">0</div>
+                    <div class="nutrition-label" data-lang="en">Carbs (g)</div>
+                </div>
+                <div class="nutrition-item">
+                    <div class="nutrition-value" data-target="2">0</div>
+                    <div class="nutrition-label" data-lang="en">Fat (g)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">What Athletes Say</h2>
+            <p class="section-subtitle" data-lang="en">Join thousands of satisfied customers</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="testimonial-content" data-lang="en">
+                        "TURBO GT 17 has completely transformed my workout routine. The taste is incredible and the results speak for themselves. I've gained 8lbs of lean muscle in just 2 months!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" data-lang="en">JD</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name" data-lang="en">John Davis</div>
+                            <div class="testimonial-role" data-lang="en">Professional Athlete</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="testimonial-content" data-lang="en">
+                        "As a fitness coach, I recommend TURBO GT 17 to all my clients. The clean ingredients and amazing taste make it the perfect choice for anyone serious about their fitness goals."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" data-lang="en">SM</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name" data-lang="en">Sarah Miller</div>
+                            <div class="testimonial-role" data-lang="en">Fitness Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="testimonial-content" data-lang="en">
+                        "I've tried dozens of protein supplements, but nothing compares to TURBO GT 17. The recovery time is amazing and the flavor is like a dessert!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" data-lang="en">MC</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name" data-lang="en">Mike Chen</div>
+                            <div class="testimonial-role" data-lang="en">Bodybuilder</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Frequently Asked Questions</h2>
+            <p class="section-subtitle" data-lang="en">Everything you need to know about TURBO GT 17</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" data-lang="en">
+                        How long does one container last?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" data-lang="en">
+                        Each container contains 30 servings, which typically lasts one month when used daily. For optimal results, we recommend one serving post-workout or as a meal replacement.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-lang="en">
+                        Is TURBO GT 17 suitable for vegetarians?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" data-lang="en">
+                        TURBO GT 17 is made from premium whey protein isolate, which is derived from dairy. While it's vegetarian-friendly, it's not suitable for vegans. We're working on a plant-based version for our vegan customers!
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-lang="en">
+                        When should I take TURBO GT 17?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" data-lang="en">
+                        For best results, take TURBO GT 17 within 30 minutes after your workout to maximize muscle recovery. It can also be used as a meal replacement or between meals to supplement your protein intake.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-lang="en">
+                        Are there any artificial ingredients?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" data-lang="en">
+                        No! TURBO GT 17 is made with 100% natural ingredients. We use natural flavors and sweeteners, and never include artificial colors, preservatives, or fillers.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-lang="en">
+                        What's your return policy?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" data-lang="en">
+                        We offer a 30-day money-back guarantee. If you're not completely satisfied with TURBO GT 17, return the unused portion for a full refund. No questions asked!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Visual Elements Section -->
+    <section class="visual-elements" id="benefits">
+        <div class="geometric-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Premium Benefits</h2>
+            <p class="section-subtitle" data-lang="en">Experience the difference with scientifically-backed benefits</p>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h3 class="benefit-title" data-lang="en">Rapid Absorption</h3>
+                    <p class="benefit-description" data-lang="en">Advanced hydrolyzed formula for lightning-fast nutrient delivery to muscles.</p>
+                    <div class="benefit-stat">
+                        <span class="benefit-stat-value">15min</span>
+                        <span class="benefit-stat-label" data-lang="en">Absorption Time</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔥</div>
+                    <h3 class="benefit-title" data-lang="en">Explosive Energy</h3>
+                    <p class="benefit-description" data-lang="en">Sustained release formula powers through intense workouts and daily challenges.</p>
+                    <div class="benefit-stat">
+                        <span class="benefit-stat-value">4hrs</span>
+                        <span class="benefit-stat-label" data-lang="en">Energy Duration</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💪</div>
+                    <h3 class="benefit-title" data-lang="en">Enhanced Recovery</h3>
+                    <p class="benefit-description" data-lang="en">BCAA-powered recovery system minimizes downtime and maximizes gains.</p>
+                    <div class="benefit-stat">
+                        <span class="benefit-stat-value">3x</span>
+                        <span class="benefit-stat-label" data-lang="en">Faster Recovery</span>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title" data-lang="en">Precision Nutrition</h3>
+                    <p class="benefit-description" data-lang="en">Scientifically balanced macro profile for optimal body composition results.</p>
+                    <div class="benefit-stat">
+                        <span class="benefit-stat-value">100%</span>
+                        <span class="benefit-stat-label" data-lang="en">Precision Formulated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="cta-background"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title" data-lang="en">Ready to Transform Your Fitness?</h2>
+                <p class="cta-subtitle" data-lang="en">Join thousands of athletes who've already made the switch</p>
+                <a href="#" class="cta-button-large" data-lang="en">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TURBO GT 17</h3>
+                <p data-lang="en">Premium protein supplement designed for maximum performance and optimal results.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">f</a>
+                    <a href="#" class="social-link" aria-label="Twitter">t</a>
+                    <a href="#" class="social-link" aria-label="Instagram">i</a>
+                    <a href="#" class="social-link" aria-label="YouTube">y</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 data-lang="en">Quick Links</h3>
+                <p><a href="#features" data-lang="en">Features</a></p>
+                <p><a href="#nutrition" data-lang="en">Nutrition</a></p>
+                <p><a href="#testimonials" data-lang="en">Reviews</a></p>
+                <p><a href="#faq" data-lang="en">FAQ</a></p>
+            </div>
+            <div class="footer-section">
+                <h3 data-lang="en">Support</h3>
+                <p><a href="#" data-lang="en">Contact Us</a></p>
+                <p><a href="#" data-lang="en">Shipping Info</a></p>
+                <p><a href="#" data-lang="en">Returns</a></p>
+                <p><a href="#" data-lang="en">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>--crafted by <a href="https://www.linkedin.com/in/ramakanthk/" target="_blank" rel="noopener noreferrer" style="color: var(--neon-blue); text-decoration: none;">ramakanth</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2500);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger menu
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Animate nutrition numbers
+                    if (entry.target.classList.contains('nutrition-item')) {
+                        const valueElement = entry.target.querySelector('.nutrition-value');
+                        const target = parseFloat(valueElement.getAttribute('data-target'));
+                        animateValue(valueElement, 0, target, 2000);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const nutritionItems = document.querySelectorAll('.nutrition-item');
+            const benefitItems = document.querySelectorAll('.benefit-item');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const ctaContent = document.querySelector('.cta-content');
+
+            featureCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            nutritionItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            benefitItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(item);
+            });
+
+            testimonialCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            observer.observe(ctaContent);
+        });
+
+        // Animate number counting
+        function animateValue(element, start, end, duration) {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = start + (end - start) * easeOutQuad(progress);
+                element.textContent = current.toFixed(1);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        function easeOutQuad(t) {
+            return t * (2 - t);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    const spans = mobileMenuToggle.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        });
+
+        // Enhanced parallax effects with mobile optimization
+        let lastScrollY = 0;
+        let ticking = false;
+        
+        function updateScrollEffects() {
+            const scrolled = window.pageYOffset;
+            const isMobile = window.innerWidth <= 768;
+            
+            // Hero product rotation on scroll
+            const heroProduct = document.querySelector('.hero-product');
+            if (heroProduct && !isMobile) {
+                const rotation = scrolled * 0.1;
+                heroProduct.style.transform = `rotateY(${rotation}deg)`;
+                
+                // Fade blue background as user scrolls down
+                const beforeElement = heroProduct.querySelector('::before') || heroProduct;
+                if (beforeElement) {
+                    const fadeStart = 0;
+                    const fadeEnd = 400;
+                    const fadeProgress = Math.max(0, Math.min(1, scrolled / fadeEnd));
+                    
+                    const newOpacity = 0.6 * (1 - fadeProgress);
+                    beforeElement.style.opacity = newOpacity;
+                    beforeElement.style.filter = `blur(${20 + (5 * (1 - fadeProgress))}px)`;
+                    
+                    const productImage = heroProduct.querySelector('img');
+                    if (productImage) {
+                        const currentTransform = productImage.style.transform || '';
+                        productImage.style.filter = 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 40px rgba(139, 92, 246, 0.3)) drop-shadow(0 0 60px rgba(255, 0, 110, 0.2))';
+                        productImage.style.transform = currentTransform;
+                        productImage.style.willChange = 'transform, filter';
+                    }
+                    
+                    heroProduct.style.filter = 'none';
+                }
+            }
+            
+            // Hero content parallax (disabled on mobile)
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent && !isMobile) {
+                heroContent.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+            
+            // Particles parallax (disabled on mobile)
+            const heroParticles = document.querySelector('.hero-particles');
+            if (heroParticles && !isMobile) {
+                heroParticles.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            lastScrollY = window.pageYOffset;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    updateScrollEffects();
+                });
+                ticking = true;
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Create floating particles with increased quantity and everywhere distribution
+        function createParticles() {
+            const particlesContainer = document.getElementById('heroParticles');
+            if (!particlesContainer) return;
+
+            const isMobile = window.innerWidth <= 768;
+            const isUltraMobile = window.innerWidth <= 480;
+            let particleCount = 80; // Increased from 45 to 80
+            
+            if (isMobile) particleCount = 50; // Increased from 25 to 50
+            if (isUltraMobile) particleCount = 35; // Increased from 18 to 35
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random starting position across entire viewport
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay for more natural movement
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                
+                // Random duration for varied speeds
+                const baseDuration = isMobile ? 12 : 8;
+                particle.style.animationDuration = (Math.random() * 5 + baseDuration) + 's';
+                
+                if (!isMobile) {
+                    particle.style.willChange = 'transform, opacity';
+                }
+                
+                // Random colors
+                const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--neon-green)', 'var(--neon-yellow)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random sizes
+                const size = Math.random() * 4 + 0.5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random animation pattern for more variety
+                const animationPatterns = ['particleFloat1', 'particleFloat2', 'particleFloat3', 'particleFloat4', 'particleFloat5'];
+                const randomPattern = animationPatterns[Math.floor(Math.random() * animationPatterns.length)];
+                particle.style.animation = `${randomPattern} ${particle.style.animationDuration} ease-in-out infinite`;
+                
+                // Random opacity
+                particle.style.opacity = 0.3 + Math.random() * 0.5;
+                
+                // Random z-index for depth layering
+                particle.style.zIndex = Math.floor(Math.random() * 5);
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Enhanced mouse tracking for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isMobile = window.innerWidth <= 768;
+            
+            // Add unified hover interactions for all devices
+            const allInteractiveElements = document.querySelectorAll('.feature-card, .benefit-item, .testimonial-card, .cta-button, .cta-button-large, .nutrition-item');
+            
+            allInteractiveElements.forEach(element => {
+                let hoverTimer = null;
+                let isHovering = false;
+                let isMouseDown = false;
+                
+                const startInteraction = (e) => {
+                    e.preventDefault();
+                    
+                    hoverTimer = setTimeout(() => {
+                        isHovering = true;
+                        this.style.transform = 'scale(1.05)';
+                        this.style.transition = 'transform 0.3s ease';
+                        
+                        if (element.classList.contains('feature-card') || element.classList.contains('benefit-item') || element.classList.contains('testimonial-card') || element.classList.contains('nutrition-item')) {
+                            this.style.borderColor = 'var(--neon-blue)';
+                            this.style.background = 'rgba(255, 255, 255, 0.1)';
+                            this.style.boxShadow = '0 10px 30px rgba(0, 212, 255, 0.2)';
+                            
+                            const icon = this.querySelector('.feature-icon, .benefit-icon');
+                            if (icon) {
+                                icon.style.transform = 'scale(1.1) rotate(10deg)';
+                                icon.style.background = 'var(--gradient-secondary)';
+                                icon.style.transition = 'all 0.3s ease';
+                            }
+                        }
+                        
+                        if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                            this.style.background = 'var(--gradient-secondary)';
+                            this.style.transform = 'translateY(-3px) scale(1.05)';
+                        }
+                    }, 500);
+                    
+                    this.style.transform = 'scale(0.95)';
+                    this.style.transition = 'transform 0.1s ease';
+                    
+                    if (element.classList.contains('feature-card') || element.classList.contains('benefit-item') || element.classList.contains('testimonial-card') || element.classList.contains('nutrition-item')) {
+                        this.style.borderColor = 'var(--neon-blue)';
+                        this.style.background = 'rgba(255, 255, 255, 0.08)';
+                    }
+                    
+                    isMouseDown = true;
+                };
+                
+                const endInteraction = () => {
+                    isMouseDown = false;
+                    
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
+                    }
+                    
+                    if (!isHovering) {
+                        this.style.transform = 'scale(1)';
+                        this.style.borderColor = '';
+                        this.style.background = '';
+                        this.style.boxShadow = '';
+                        
+                        const icon = this.querySelector('.feature-icon, .benefit-icon');
+                        if (icon) {
+                            icon.style.transform = '';
+                            icon.style.background = '';
+                        }
+                        
+                        if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                            this.style.background = '';
+                            this.style.transform = '';
+                        }
+                    }
+                    
+                    setTimeout(() => {
+                        if (!isMouseDown) {
+                            isHovering = false;
+                            this.style.transform = 'scale(1)';
+                            this.style.borderColor = '';
+                            this.style.background = '';
+                            this.style.boxShadow = '';
+                            
+                            const icon = this.querySelector('.feature-icon, .benefit-icon');
+                            if (icon) {
+                                icon.style.transform = '';
+                                icon.style.background = '';
+                            }
+                            
+                            if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                                this.style.background = '';
+                                this.style.transform = '';
+                            }
+                        }
+                    }, 1000);
+                };
+                
+                const cancelInteraction = () => {
+                    isMouseDown = false;
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
+                    }
+                    if (isHovering) {
+                        isHovering = false;
+                        this.style.transform = 'scale(1)';
+                        this.style.borderColor = '';
+                        this.style.background = '';
+                        this.style.boxShadow = '';
+                        
+                        const icon = this.querySelector('.feature-icon, .benefit-icon');
+                        if (icon) {
+                            icon.style.transform = '';
+                            icon.style.background = '';
+                        }
+                        
+                        if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                            this.style.background = '';
+                            this.style.transform = '';
+                        }
+                    }
+                };
+                
+                // Mouse events for desktop
+                element.addEventListener('mousedown', startInteraction);
+                element.addEventListener('mouseup', endInteraction);
+                element.addEventListener('mouseleave', cancelInteraction);
+                
+                // Touch events for mobile
+                element.addEventListener('touchstart', startInteraction);
+                element.addEventListener('touchend', endInteraction);
+                element.addEventListener('touchcancel', cancelInteraction);
+                
+                // Touch move effect
+                element.addEventListener('touchmove', () => {
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
+                    }
+                    if (isHovering) {
+                        isHovering = false;
+                        this.style.transform = 'scale(1)';
+                        this.style.borderColor = '';
+                        this.style.background = '';
+                        this.style.boxShadow = '';
+                        
+                        const icon = this.querySelector('.feature-icon, .benefit-icon');
+                        if (icon) {
+                            icon.style.transform = '';
+                            icon.style.background = '';
+                        }
+                        
+                        if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                            this.style.background = '';
+                            this.style.transform = '';
+                        }
+                    }
+                });
+                
+                // Add traditional hover for desktop
+                if (!isTouchDevice) {
+                    element.addEventListener('mouseenter', () => {
+                        if (!isMouseDown && !isHovering) {
+                            this.style.transform = 'scale(1.05)';
+                            this.style.transition = 'transform 0.3s ease';
+                            
+                            if (element.classList.contains('feature-card') || element.classList.contains('benefit-item') || element.classList.contains('testimonial-card') || element.classList.contains('nutrition-item')) {
+                                this.style.borderColor = 'var(--neon-blue)';
+                                this.style.background = 'rgba(255, 255, 255, 0.1)';
+                                this.style.boxShadow = '0 10px 30px rgba(0, 212, 255, 0.2)';
+                                
+                                const icon = this.querySelector('.feature-icon, .benefit-icon');
+                                if (icon) {
+                                    icon.style.transform = 'scale(1.1) rotate(10deg)';
+                                    icon.style.background = 'var(--gradient-secondary)';
+                                }
+                            }
+                            
+                            if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                                this.style.background = 'var(--gradient-secondary)';
+                                this.style.transform = 'translateY(-3px) scale(1.05)';
+                            }
+                        }
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        if (!isMouseDown && !isHovering) {
+                            this.style.transform = 'scale(1)';
+                            this.style.borderColor = '';
+                            this.style.background = '';
+                            this.style.boxShadow = '';
+                            
+                            const icon = this.querySelector('.feature-icon, .benefit-icon');
+                            if (icon) {
+                                icon.style.transform = '';
+                                icon.style.background = '';
+                            }
+                            
+                            if (element.classList.contains('cta-button') || element.classList.contains('cta-button-large')) {
+                                this.style.background = '';
+                                this.style.transform = '';
+                            }
+                        }
+                    });
+                }
+            });
+            
+            // Enhanced hero product interaction
+            const heroProduct = document.querySelector('.hero-product');
+            if (heroProduct) {
+                let heroHoverTimer = null;
+                let isHeroHovering = false;
+                let isHeroMouseDown = false;
+                
+                const startHeroInteraction = () => {
+                    heroHoverTimer = setTimeout(() => {
+                        isHeroHovering = true;
+                        this.style.transform = 'scale(1.1) rotateY(15deg)';
+                        this.style.transition = 'transform 0.3s ease';
+                        this.style.filter = 'drop-shadow(0 0 30px rgba(0, 212, 255, 0.6)) brightness(1.2)';
+                        
+                        const beforeElement = this.querySelector('::before') || this;
+                        if (beforeElement) {
+                            beforeElement.style.opacity = '0.8';
+                            beforeElement.style.filter = 'blur(25px)';
+                        }
+                    }, 500);
+                    
+                    this.style.transform = 'scale(0.95)';
+                    this.style.transition = 'transform 0.2s ease';
+                    
+                    const beforeElement = this.querySelector('::before') || this;
+                    if (beforeElement) {
+                        beforeElement.style.opacity = '0.8';
+                        beforeElement.style.filter = 'blur(25px)';
+                    }
+                    
+                    isHeroMouseDown = true;
+                };
+                
+                const endHeroInteraction = () => {
+                    isHeroMouseDown = false;
+                    
+                    if (heroHoverTimer) {
+                        clearTimeout(heroHoverTimer);
+                        heroHoverTimer = null;
+                    }
+                    
+                    if (!isHeroHovering) {
+                        this.style.transform = 'scale(1)';
+                        this.style.filter = '';
+                        
+                        const beforeElement = this.querySelector('::before') || this;
+                        if (beforeElement) {
+                            // Keep current opacity for scroll fade effect
+                        }
+                    }
+                    
+                    setTimeout(() => {
+                        if (!isHeroMouseDown) {
+                            isHeroHovering = false;
+                            this.style.transform = 'scale(1)';
+                            this.style.filter = '';
+                            
+                            const beforeElement = this.querySelector('::before') || this;
+                            if (beforeElement) {
+                                // Keep current opacity for scroll fade effect
+                            }
+                        }
+                    }, 1000);
+                };
+                
+                const cancelHeroInteraction = () => {
+                    isHeroMouseDown = false;
+                    if (heroHoverTimer) {
+                        clearTimeout(heroHoverTimer);
+                        heroHoverTimer = null;
+                    }
+                    isHeroHovering = false;
+                    this.style.transform = 'scale(1)';
+                    this.style.filter = '';
+                    
+                    const beforeElement = this.querySelector('::before') || this;
+                    if (beforeElement) {
+                        // Keep current opacity for scroll fade effect
+                    }
+                };
+                
+                // Mouse events
+                heroProduct.addEventListener('mousedown', startHeroInteraction);
+                heroProduct.addEventListener('mouseup', endHeroInteraction);
+                heroProduct.addEventListener('mouseleave', cancelHeroInteraction);
+                
+                // Touch events
+                heroProduct.addEventListener('touchstart', startHeroInteraction);
+                heroProduct.addEventListener('touchend', endHeroInteraction);
+                heroProduct.addEventListener('touchcancel', cancelHeroInteraction);
+                
+                // Traditional hover for desktop
+                if (!isTouchDevice) {
+                    heroProduct.addEventListener('mouseenter', () => {
+                        if (!isHeroMouseDown && !isHeroHovering) {
+                            this.style.transform = 'scale(1.1) rotateY(15deg)';
+                            this.style.transition = 'transform 0.3s ease';
+                            this.style.filter = 'drop-shadow(0 0 30px rgba(0, 212, 255, 0.6)) brightness(1.2)';
+                            
+                            const beforeElement = this.querySelector('::before') || this;
+                            if (beforeElement) {
+                                beforeElement.style.opacity = '0.8';
+                                beforeElement.style.filter = 'blur(25px)';
+                            }
+                        }
+                    });
+                    
+                    heroProduct.addEventListener('mouseleave', () => {
+                        if (!isHeroMouseDown && !isHeroHovering) {
+                            this.style.transform = 'scale(1)';
+                            this.style.filter = '';
+                            
+                            const beforeElement = this.querySelector('::before') || this;
+                            if (beforeElement) {
+                                // Keep current opacity for scroll fade effect
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        // Optimized cursor effect (throttled)
+        let cursorTimeout;
+        document.addEventListener('mousemove', function(e) {
+            if (!cursorTimeout) {
+                cursorTimeout = setTimeout(() => {
+                    const cursor = document.createElement('div');
+                    cursor.style.position = 'fixed';
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursor.style.width = '3px';
+                    cursor.style.height = '3px';
+                    cursor.style.background = 'var(--neon-blue)';
+                    cursor.style.borderRadius = '50%';
+                    cursor.style.pointerEvents = 'none';
+                    cursor.style.zIndex = '9999';
+                    cursor.style.opacity = '0.6';
+                    cursor.style.animation = 'cursorFade 0.8s ease-out forwards';
+                    
+                    document.body.appendChild(cursor);
+                    
+                    setTimeout(() => {
+                        cursor.remove();
+                    }, 800);
+                    cursorTimeout = null;
+                }, 100);
+            }
+        });
+
+        // Add cursor fade animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes cursorFade {
+                0% { opacity: 0.8; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Performance optimization - Reduce motion on low-end devices
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduceMotion.matches) {
+            document.querySelectorAll('*').forEach(el => {
+                el.style.animation = 'none';
+                el.style.transition = 'none';
+            });
+        }
+
+        // Add loading optimization for images
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.loading = 'eager';
+            img.decoding = 'async';
+        });
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+
+        // Language Toggle Functionality
+        const languageToggle = document.getElementById('languageToggle');
+        const languageIcon = document.getElementById('languageIcon');
+        
+        // Language translations
+        const translations = {
+            en: {
+                'loading-subtitle': 'Premium Protein Supplement',
+                'nav-home': 'Home',
+                'nav-features': 'Features',
+                'nav-nutrition': 'Nutrition',
+                'nav-testimonials': 'Reviews',
+                'nav-benefits': 'Benefits',
+                'nav-faq': 'FAQ',
+                'hero-badge': '🔥 BEST SELLER',
+                'hero-subtitle': 'Premium Protein Supplement for Maximum Performance',
+                'hero-protein-label': 'Protein',
+                'hero-calories-label': 'Calories',
+                'hero-taste-label': 'Taste',
+                'hero-cta': 'Buy Now - Save 30%',
+                'features-title': 'Why Choose TURBO GT 17',
+                'features-subtitle': 'Scientifically formulated to deliver maximum results with premium ingredients',
+                'feature1-title': 'High Protein',
+                'feature1-desc': 'Premium quality whey protein isolate to maximize muscle growth and accelerate recovery time.',
+                'feature1-label': 'Per Serving',
+                'feature2-title': 'Low Calorie',
+                'feature2-desc': 'Smart nutrition that fuels your body without compromising your calorie goals.',
+                'feature2-label': 'Calories',
+                'feature3-title': 'Premium Taste',
+                'feature3-desc': 'Indulgent milkshake flavor that makes healthy nutrition taste amazing.',
+                'feature3-label': 'Taste Rating',
+                'feature4-title': 'Clean Nutrition',
+                'feature4-desc': 'Pure ingredients with no artificial additives or unnecessary fillers.',
+                'feature4-label': 'Natural',
+                'nutrition-title': 'Nutrition Facts',
+                'nutrition-subtitle': 'Every serving delivers exactly what your body needs',
+                'nutrition-protein': 'Protein (g)',
+                'nutrition-calories': 'Calories',
+                'nutrition-carbs': 'Carbs (g)',
+                'nutrition-fat': 'Fat (g)',
+                'testimonials-title': 'What Athletes Say',
+                'testimonials-subtitle': 'Join thousands of satisfied customers',
+                'testimonial1-content': '"TURBO GT 17 has completely transformed my workout routine. The taste is incredible and the results speak for themselves. I\'ve gained 8lbs of lean muscle in just 2 months!"',
+                'testimonial1-avatar': 'JD',
+                'testimonial1-name': 'John Davis',
+                'testimonial1-role': 'Professional Athlete',
+                'testimonial2-content': '"As a fitness coach, I recommend TURBO GT 17 to all my clients. The clean ingredients and amazing taste make it the perfect choice for anyone serious about their fitness goals."',
+                'testimonial2-avatar': 'SM',
+                'testimonial2-name': 'Sarah Miller',
+                'testimonial2-role': 'Fitness Coach',
+                'testimonial3-content': '"I\'ve tried dozens of protein supplements, but nothing compares to TURBO GT 17. The recovery time is amazing and the flavor is like a dessert!"',
+                'testimonial3-avatar': 'MC',
+                'testimonial3-name': 'Mike Chen',
+                'testimonial3-role': 'Bodybuilder',
+                'faq-title': 'Frequently Asked Questions',
+                'faq-subtitle': 'Everything you need to know about TURBO GT 17',
+                'faq1-question': 'How long does one container last?',
+                'faq1-answer': 'Each container contains 30 servings, which typically lasts one month when used daily. For optimal results, we recommend one serving post-workout or as a meal replacement.',
+                'faq2-question': 'Is TURBO GT 17 suitable for vegetarians?',
+                'faq2-answer': 'TURBO GT 17 is made from premium whey protein isolate, which is derived from dairy. While it\'s vegetarian-friendly, it\'s not suitable for vegans. We\'re working on a plant-based version for our vegan customers!',
+                'faq3-question': 'When should I take TURBO GT 17?',
+                'faq3-answer': 'For best results, take TURBO GT 17 within 30 minutes after your workout to maximize muscle recovery. It can also be used as a meal replacement or between meals to supplement your protein intake.',
+                'faq4-question': 'Are there any artificial ingredients?',
+                'faq4-answer': 'No! TURBO GT 17 is made with 100% natural ingredients. We use natural flavors and sweeteners, and never include artificial colors, preservatives, or fillers.',
+                'faq5-question': 'What\'s your return policy?',
+                'faq5-answer': 'We offer a 30-day money-back guarantee. If you\'re not completely satisfied with TURBO GT 17, return the unused portion for a full refund. No questions asked!',
+                'benefits-title': 'Premium Benefits',
+                'benefits-subtitle': 'Experience the difference with scientifically-backed benefits',
+                'benefit1-title': 'Rapid Absorption',
+                'benefit1-desc': 'Advanced hydrolyzed formula for lightning-fast nutrient delivery to muscles.',
+                'benefit1-label': 'Absorption Time',
+                'benefit1-value': '15min',
+                'benefit2-title': 'Explosive Energy',
+                'benefit2-desc': 'Sustained release formula powers through intense workouts and daily challenges.',
+                'benefit2-label': 'Energy Duration',
+                'benefit2-value': '4hrs',
+                'benefit3-title': 'Enhanced Recovery',
+                'benefit3-desc': 'BCAA-powered recovery system minimizes downtime and maximizes gains.',
+                'benefit3-label': 'Faster Recovery',
+                'benefit3-value': '3x',
+                'benefit4-title': 'Precision Nutrition',
+                'benefit4-desc': 'Scientifically balanced macro profile for optimal body composition results.',
+                'benefit4-label': 'Precision Formulated',
+                'benefit4-value': '100%',
+                'cta-title': 'Ready to Transform Your Fitness?',
+                'cta-subtitle': 'Join thousands of athletes who\'ve already made the switch',
+                'cta-price-original': '$79.99',
+                'cta-price-current': '$55.99',
+                'cta-savings': 'Save 30% - Limited Time',
+                'cta-button': 'Order Now - Free Shipping',
+                'cta-feature1': '30-Day Money Back',
+                'cta-feature2': 'Free Shipping',
+                'cta-feature3': 'Premium Quality',
+                'footer-desc': 'Premium protein supplement designed for maximum performance and optimal results.',
+                'footer-quick-links': 'Quick Links',
+                'footer-support': 'Support',
+                'footer-contact': 'Contact',
+                'footer-contact-email': 'Email: support@turbogt17.com',
+                'footer-contact-phone': 'Phone: 1-800-TURBO-GT',
+                'footer-contact-hours': 'Hours: Mon-Fri 9AM-6PM EST',
+                'footer-copyright': '--crafted by <a href="https://www.linkedin.com/in/ramakanthk/" target="_blank" rel="noopener noreferrer" style="color: var(--neon-blue); text-decoration: none;">ramakanth</a>'
+            },
+            hi: {
+                'loading-subtitle': 'प्रीमियम प्रोटीन सप्लीमेंट',
+                'nav-home': 'होम',
+                'nav-features': 'विशेषताएं',
+                'nav-nutrition': 'पोषण',
+                'nav-testimonials': 'समीक्षाएं',
+                'nav-benefits': 'लाभ',
+                'nav-faq': 'सामान्य प्रश्न',
+                'hero-badge': '🔥 सबसे अधिक बिकने वाला',
+                'hero-subtitle': 'अधिकतम प्रदर्शन के लिए प्रीमियम प्रोटीन सप्लीमेंट',
+                'hero-protein-label': 'प्रोटीन',
+                'hero-calories-label': 'कैलोरी',
+                'hero-taste-label': 'स्वाद',
+                'hero-cta': 'अभी खरीदें - 30% बचाएं',
+                'features-title': 'TURBO GT 17 क्यों चुनें',
+                'features-subtitle': 'प्रीमियम अवयवों के साथ अधिकतम परिणाम देने के लिए वैज्ञानिक रूप से तैयार किया गया',
+                'feature1-title': 'उच्च प्रोटीन',
+                'feature1-desc': 'मांसपेशियों के विकास को अधिकतम करने और रिकवरी समय को तेज करने के लिए प्रीमियम गुणवत्ता वाला व्हे प्रोटीन आइसोलेट।',
+                'feature1-label': 'प्रति सर्विंग',
+                'feature2-title': 'कम कैलोरी',
+                'feature2-desc': 'स्मार्ट पोषण जो आपके कैलोरी लक्ष्यों के साथ समझौता किए बिना आपके शरीर को ईंधन देता है।',
+                'feature2-label': 'कैलोरी',
+                'feature3-title': 'प्रीमियम स्वाद',
+                'feature3-desc': 'आकर्षक मिल्कशेक फ्लेवर जो स्वस्थ पोषण को अद्भुत स्वाद देता है।',
+                'feature3-label': 'स्वाद रेटिंग',
+                'feature4-title': 'शुद्ध पोषण',
+                'feature4-desc': 'कृत्रिम योजकों या अनावश्यक भराव के बिना शुद्ध अवयव।',
+                'feature4-label': 'प्राकृतिक',
+                'nutrition-title': 'पोषण तथ्य',
+                'nutrition-subtitle': 'हर सर्विंग आपके शरीर को ठीक वही देता है जो उसे चाहिए',
+                'nutrition-protein': 'प्रोटीन (g)',
+                'nutrition-calories': 'कैलोरी',
+                'nutrition-carbs': 'कार्बोहाइड्रेट (g)',
+                'nutrition-fat': 'वसा (g)',
+                'testimonials-title': 'एथलीट क्या कहते हैं',
+                'testimonials-subtitle': 'हजारों संतुष्ट ग्राहकों में शामिल हों',
+                'testimonial1-content': '"TURBO GT 17 ने पूरी तरह से मेरी वर्कआउट दिनचर्या को बदल दिया है। स्वाद अविश्वसनीय है और परिणाम खुद बोलते हैं। मैंने सिर्फ 2 महीनों में 8 पाउंड दुबली मांसपेशियां बढ़ाई हैं!"',
+                'testimonial1-avatar': 'जेडी',
+                'testimonial1-name': 'राज कुमार',
+                'testimonial1-role': 'पेशेवर एथलीट',
+                'testimonial2-content': '"एक फिटनेस कोच के रूप में, मैं अपने सभी ग्राहकों को TURBO GT 17 की अनुशंसा करता हूं। शुद्ध अवयव और अद्भुत स्वाद इसे किसी के लिए भी फिटनेस लक्ष्यों के प्रति गंभीर होने के लिए उत्तम विकल्प बनाते हैं।"',
+                'testimonial2-avatar': 'एसएम',
+                'testimonial2-name': 'प्रिया शर्मा',
+                'testimonial2-role': 'फिटनेस कोच',
+                'testimonial3-content': '"मैंने दर्जनों प्रोटीन सप्लीमेंट आजमाए हैं, लेकिन TURBO GT 17 से कोई तुलना नहीं कर सकता। रिकवरी समय अद्भुत है और फ्लेवर एक मिठाई जैसा है!"',
+                'testimonial3-avatar': 'एमसी',
+                'testimonial3-name': 'अमित पटेल',
+                'testimonial3-role': 'बॉडीबिल्डर',
+                'faq-title': 'सामान्य प्रश्न',
+                'faq-subtitle': 'TURBO GT 17 के बारे में आपको जो कुछ जानना है',
+                'faq1-question': 'एक कंटेनर कितने दिन तक चलता है?',
+                'faq1-answer': 'प्रत्येक कंटेनर में 30 सर्विंग्स होती हैं, जो दैनिक उपयोग पर आमतौर पर एक महीने तक चलती है। इष्टतम परिणामों के लिए, हम वर्कआउट के बाद एक सर्विंग या भोजन प्रतिस्थापन के रूप में अनुशंसा करते हैं।',
+                'faq2-question': 'क्या TURBO GT 17 शाकाहारियों के लिए उपयुक्त है?',
+                'faq2-answer': 'TURBO GT 17 प्रीमियम व्हे प्रोटीन आइसोलेट से बनाया गया है, जो डेयरी से प्राप्त होता है। जबकि यह शाकाहारी-अनुकूल है, यह वेगान के लिए उपयुक्त नहीं है। हम अपने वेगन ग्राहकों के लिए एक पौधे-आधारित संस्करण पर काम कर रहे हैं!',
+                'faq3-question': 'मुझे TURBO GT 17 कब लेना चाहिए?',
+                'faq3-answer': 'सर्वोत्तम परिणामों के लिए, मांसपेशी रिकवरी को अधिकतम करने के लिए अपने वर्कआउट के 30 मिनट के भीतर TURBO GT 17 लें। इसका उपयोग भोजन प्रतिस्थापन के रूप में या भोजन के बीच अपने प्रोटीन सेवन को पूरक करने के लिए भी किया जा सकता है।',
+                'faq4-question': 'क्या इसमें कोई कृत्रिम अवयव हैं?',
+                'faq4-answer': 'नहीं! TURBO GT 17 100% प्राकृतिक अवयवों के साथ बनाया गया है। हम प्राकृतिक स्वाद और मिठास का उपयोग करते हैं, और कभी भी कृत्रिम रंग, परिरक्षक या भराव शामिल नहीं करते।',
+                'faq5-question': 'आपकी रिटर्न पॉलिसी क्या है?',
+                'faq5-answer': 'हम 30-दिन की मनी-बैक गारंटी प्रदान करते हैं। यदि आप TURBO GT 17 से पूरी तरह संतुष्ट नहीं हैं, तो पूर्ण रिफंड के लिए अप्रयुक्त हिस्सा वापस करें। कोई सवाल नहीं पूछा गया!',
+                'benefits-title': 'प्रीमियम लाभ',
+                'benefits-subtitle': 'वैज्ञानिक रूप से समर्थित लाभों के साथ अंतर का अनुभव करें',
+                'benefit1-title': 'तेज अवशोषण',
+                'benefit1-desc': 'मांसपेशियों में तेजी से पोषक तत्व पहुंचाने के लिए उन्नत हाइड्रोलाइज्ड फॉर्मूला।',
+                'benefit1-label': 'अवशोषण समय',
+                'benefit1-value': '15मिन',
+                'benefit2-title': 'विस्फोटक ऊर्जा',
+                'benefit2-desc': 'निरंतर रिलीज फॉर्मूला तीव्र वर्कआउट और दैनिक चुनौतियों को पार करता है।',
+                'benefit2-label': 'ऊर्जा अवधि',
+                'benefit2-value': '4घंटे',
+                'benefit3-title': 'बेहतर रिकवरी',
+                'benefit3-desc': 'BCAA-संचालित रिकवरी सिस्टम डाउनटाइम को कम करता है और लाभ को अधिकतम करता है।',
+                'benefit3-label': 'तेज रिकवरी',
+                'benefit3-value': '3x',
+                'benefit4-title': 'सटीक पोषण',
+                'benefit4-desc': 'इष्टतम शारीरिक रचना परिणामों के लिए वैज्ञानिक रूप से संतुलित मैक्रो प्रोफाइल।',
+                'benefit4-label': 'सटीक रूप से तैयार',
+                'benefit4-value': '100%',
+                'cta-title': 'अपनी फिटनेस को बदलने के लिए तैयार?',
+                'cta-subtitle': 'उन हजारों एथलीटों में शामिल हों जो पहले ही स्विच कर चुके हैं',
+                'cta-price-original': '₹6,399',
+                'cta-price-current': '₹4,479',
+                'cta-savings': '30% बचाएं - सीमित समय',
+                'cta-button': 'अभी ऑर्डर करें - मुफ्त शिपिंग',
+                'cta-feature1': '30-दिन मनी बैक',
+                'cta-feature2': 'मुफ्त शिपिंग',
+                'cta-feature3': 'प्रीमियम गुणवत्ता',
+                'footer-desc': 'अधिकतम प्रदर्शन और इष्टतम परिणामों के लिए डिज़ाइन किया गया प्रीमियम प्रोटीन सप्लीमेंट।',
+                'footer-quick-links': 'त्वरित लिंक',
+                'footer-support': 'समर्थन',
+                'footer-contact': 'संपर्क',
+                'footer-contact-email': 'ईमेल: support@turbogt17.com',
+                'footer-contact-phone': 'फोन: 1800-123-4567',
+                'footer-contact-hours': 'समय: सोम-शुक्र सुबह 9बजे-शाम 6बजे IST',
+                'footer-copyright': '--crafted by <a href="https://www.linkedin.com/in/ramakanthk/" target="_blank" rel="noopener noreferrer" style="color: var(--neon-blue); text-decoration: none;">ramakanth</a>'
+            }
+        };
+
+        // Check for saved language preference or default to English
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        updateLanguage(currentLanguage);
+
+        languageToggle.addEventListener('click', function() {
+            currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+            localStorage.setItem('language', currentLanguage);
+            updateLanguage(currentLanguage);
+        });
+
+        function updateLanguage(lang) {
+            // Update language icon
+            languageIcon.textContent = lang === 'en' ? '🇬🇧' : '🇮🇳';
+            
+            // Update all elements with data-lang attribute
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update FAQ questions and answers separately
+            document.querySelectorAll('.faq-question').forEach((element, index) => {
+                const questionKey = `faq${index + 1}-question`;
+                const answerKey = `faq${index + 1}-answer`;
+                
+                if (translations[lang][questionKey]) {
+                    const questionText = element.textContent.split('+')[0].trim();
+                    element.innerHTML = `${translations[lang][questionKey]} <span class="faq-toggle">+</span>`;
+                }
+            });
+
+            document.querySelectorAll('.faq-answer').forEach((element, index) => {
+                const answerKey = `faq${index + 1}-answer`;
+                if (translations[lang][answerKey]) {
+                    element.textContent = translations[lang][answerKey];
+                }
+            });
+
+            // Update navigation links
+            const navLinks = {
+                'nav-home': 0,
+                'nav-features': 1,
+                'nav-nutrition': 2,
+                'nav-testimonials': 3,
+                'nav-benefits': 4,
+                'nav-faq': 5
+            };
+
+            Object.keys(navLinks).forEach(key => {
+                const index = navLinks[key];
+                const navElement = document.querySelectorAll('.nav-links a')[index];
+                if (navElement && translations[lang][key]) {
+                    navElement.textContent = translations[lang][key];
+                }
+            });
+
+            // Update price elements
+            const priceOriginal = document.querySelector('.cta-price-original');
+            const priceCurrent = document.querySelector('.cta-price-current');
+            if (priceOriginal && translations[lang]['cta-price-original']) {
+                priceOriginal.textContent = translations[lang]['cta-price-original'];
+            }
+            if (priceCurrent && translations[lang]['cta-price-current']) {
+                priceCurrent.textContent = translations[lang]['cta-price-current'];
+            }
+
+            // Update CTA features
+            const ctaFeatures = document.querySelectorAll('.cta-feature span:last-child');
+            const featureKeys = ['cta-feature1', 'cta-feature2', 'cta-feature3'];
+            ctaFeatures.forEach((element, index) => {
+                if (translations[lang][featureKeys[index]]) {
+                    element.textContent = translations[lang][featureKeys[index]];
+                }
+            });
+
+            // Update footer sections
+            const footerTitles = document.querySelectorAll('.footer-section h3');
+            const footerTitleKeys = ['footer-quick-links', 'footer-support', 'footer-contact'];
+            footerTitles.forEach((element, index) => {
+                if (index > 0 && translations[lang][footerTitleKeys[index - 1]]) {
+                    element.textContent = translations[lang][footerTitleKeys[index - 1]];
+                }
+            });
+
+            // Update footer paragraphs
+            const footerParagraphs = document.querySelectorAll('.footer-section p');
+            if (footerParagraphs[0] && translations[lang]['footer-desc']) {
+                footerParagraphs[0].textContent = translations[lang]['footer-desc'];
+            }
+
+            const contactParagraphs = document.querySelectorAll('.footer-section:last-child p');
+            const contactKeys = ['footer-contact-email', 'footer-contact-phone', 'footer-contact-hours'];
+            contactParagraphs.forEach((element, index) => {
+                if (translations[lang][contactKeys[index]]) {
+                    element.textContent = translations[lang][contactKeys[index]];
+                }
+            });
+
+            // Update footer copyright
+            const footerCopyright = document.querySelector('.footer-bottom p');
+            if (footerCopyright && translations[lang]['footer-copyright']) {
+                footerCopyright.innerHTML = translations[lang]['footer-copyright'];
+            }
+        }
+    </script>
+</body>
+</html>
